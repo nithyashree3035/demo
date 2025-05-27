@@ -1,24 +1,22 @@
-pipeline {
-    agent any
-
-    environment {
-        DEPLOY_DIR = 'C:\\deployed-site'
-    }
-
-    stages {
-        stage('Clone HTML Repo') {
-            steps {
-                git 'https://github.com/nithyashree3035/demo.git'
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Night Owl Says Hello</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f4f4f4;
         }
-        stage('Deploy to Localhost') {
-            steps {
-                bat """
-                if exist "%DEPLOY_DIR%" rmdir /s /q "%DEPLOY_DIR%"
-                mkdir "%DEPLOY_DIR%"
-                xcopy * "%DEPLOY_DIR%" /E /I /Y
-                """
-            }
+        h1 {
+            color: #6a1b9a;
         }
-    }
-}
+    </style>
+</head>
+<body>
+    <h1>Hello, Alicia!</h1>
+    <p>This is your first auto-deployed HTML page via Jenkins on localhost.</p>
+</body>
+</html>
