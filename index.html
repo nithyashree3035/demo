@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    environment {
+        DEPLOY_DIR = 'C:\\deployed-site'
+    }
+
+    stages {
+        stage('Clone HTML Repo') {
+            steps {
+                git 'https://github.com/nithyashree3035/demo.git'
+            }
+        }
+        stage('Deploy to Localhost') {
+            steps {
+                bat """
+                if exist "%DEPLOY_DIR%" rmdir /s /q "%DEPLOY_DIR%"
+                mkdir "%DEPLOY_DIR%"
+                xcopy * "%DEPLOY_DIR%" /E /I /Y
+                """
+            }
+        }
+    }
+}
